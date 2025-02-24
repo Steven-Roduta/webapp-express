@@ -11,4 +11,4 @@ router.get("/:id", movieControllers.show)
 
 
 //esportiamo
-module.export = router
+module.exports = router
