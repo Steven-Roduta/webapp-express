@@ -22,7 +22,25 @@ module.exports = {
 };
 
 //show
-const show = (req, res) => {}
+const show = (req, res) => {
+    const { id } = req.params;
+
+    const sql = `SELECT *
+    FROM db_movies.movies
+    WHERE id = ?`
+
+    connection.execute(sql, [id], (err, results) => {
+        if (err) {
+            return res.status(500).json({
+                error: "query error",
+                message: `Database query error: ${sql}`,
+            });
+        }
+
+        const movie = results[0]
+        res.json(movie); 
+    })
+}
 
 module.exports = {
     index,
