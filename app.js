@@ -6,15 +6,21 @@ const port = process.env.PORT;
 //Routes
 const movieRouter = require("./routers/movierouter")
 
+const { PORT, FE_URL} = process.send;
+
+//CORS - communicazione con il Front-End
+app.use(
+    cors({
+        origin: "*",
+    }
+))
 //Middlewares per fil statici
 app.use(express.static('public'))
 //Parsing del body
 app.use(express.json())
 //Routes - rotte per le mie applicazioni
 app.use("/movies",movieRouter );
-//CORS - communicazione con il Front-End
-app.use(cors({
-    origin: process.env.FE_URL }))
+
 //Middlewares - Gestioni Errori
 
 

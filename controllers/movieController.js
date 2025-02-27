@@ -22,7 +22,7 @@ module.exports = {
 };
 
 //show
-const show = (req, res) => {
+const show = (res, req) => {
     const { id } = req.params;
 
     const sql = `SELECT *
@@ -37,9 +37,18 @@ const show = (req, res) => {
             });
         }
 
-        const movie = results[0]
-        res.json(movie); 
-    })
+        // Retrieve the movie from the results
+        const movie = results[0];
+
+    if(!movie) {
+        return res.status(404).json({
+            error: "not found",
+            message: "movie not found"
+        })
+    }
+    res.json(movie); 
+
+});
 }
 
 module.exports = {
