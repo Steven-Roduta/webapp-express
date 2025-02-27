@@ -17,13 +17,15 @@ const index = (req, res) => {
     });
 };
 
-module.exports = {
-    index
-};
 
 //show
-const show = (res, req) => {
+const show = (req, res) => {
+    // console.log("show");
+    // console.log(req.req.params);
+
     const { id } = req.params;
+
+    // console.log(id);
 
     const sql = `SELECT *
     FROM db_movies.movies
@@ -46,6 +48,9 @@ const show = (res, req) => {
             message: "movie not found"
         })
     }
+
+    // console.log(movie);
+
     res.json(movie); 
 
 });
